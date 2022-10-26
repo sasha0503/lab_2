@@ -28,7 +28,7 @@ public class Main {
             moves.get(m[0]).put(m[1], m[2]);
         }
 
-        String word_1 = "";
+        String word_1 = "a";
         String newStart = move(word_1, S0, moves);
 
         String word_2 = "b";
@@ -46,8 +46,19 @@ public class Main {
             }
         }
         String solution = findSolution(newStart, newFinals, moves);
-
-        System.out.println(steps);
+        solution = word_1 + String.join("", steps) + word_2;
+        try{
+            String new_state = move(solution, S0, moves);
+            if(Arrays.asList(finalStates).contains(new_state)){
+                System.out.println(solution);
+            }
+            else {
+                System.out.println("No solution");
+            }
+        }
+        catch (Exception WrongMove){
+            System.out.println("No solution");
+        }
     }
     static List<String> used_states = new ArrayList<>();
     static List<String> steps = new ArrayList<>();
